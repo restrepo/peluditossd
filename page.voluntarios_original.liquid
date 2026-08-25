@@ -1,0 +1,510 @@
+{% comment %}
+  Fundación Peluditos SD — Página del Programa de Voluntariado
+  Plantilla de página personalizada para Shopify (versión en español).
+
+  CONFIGURACIÓN:
+  1. Guarda este archivo como: templates/page.voluntarios.liquid
+  2. En el Admin de Shopify -> Tienda online -> Páginas, crea (o edita)
+     una página, por ejemplo "Voluntarios", y en "Plantilla de tema"
+     elige "page.voluntarios".
+  3. Agrega el enlace de Google Fonts (Montserrat) al archivo
+     layout/theme.liquid de tu tema, dentro de <head>...</head>, una vez:
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">A
+     (Omite este paso si tu tema ya carga Montserrat — la mayoría de
+     los temas de Shopify cargan sus fuentes globalmente desde
+     layout/theme.liquid, así que revisa ahí primero para no cargarla
+     dos veces.)
+  4. Esta página usa el formulario nativo de Shopify {% form 'contact' %},
+     así que los envíos llegan a Configuración -> Notificaciones ->
+     "Formulario de contacto". No se necesita ninguna app externa.
+
+  NOTA SOBRE ANCHO COMPLETO: la mayoría de los temas envuelven las
+  plantillas de página en un contenedor centrado "page-width", muchas
+  veces usando padding en vez de un simple margin:auto. Por eso el
+  truco de CSS puro "100vw + margen negativo" no es confiable, ya que
+  tendría que adivinar el padding del contenedor padre. En su lugar,
+  el pequeño script al final de este archivo mide en tiempo real la
+  distancia real del wrapper hasta el borde izquierdo del viewport y
+  la corrige directamente, así que funciona sin importar cómo esté
+  construido el contenedor de tu tema.
+{% endcomment %}
+
+<style>
+/* Break out of the theme's page-width/container wrapper (from
+   layout/theme.liquid or templates/page.liquid) so this template can
+   run full viewport width edge-to-edge, in line with the header/footer.
+   Actual left/width values are set by the script at the bottom of this
+   file, which measures the real offset instead of guessing it with
+   vw-based CSS math (that math breaks if the parent uses padding
+   instead of, or in addition to, margin:auto centering). */
+.peluditos-volunteer{
+    box-sizing:border-box;
+    overflow-x:hidden;
+  }
+.peluditos-volunteer{
+    --navy:#0F2742;
+    --navy-2:#233a67;
+    --navy-3:#0f1830;
+    --cream:#F0ECD3;
+    --cream-2:#FAF8EE;
+    --orange:#E8822F;
+    --orange-2:#C96A1E;
+    --ink:#0F2742;
+    --paper:#FFFDF7;
+    --line:rgba(24,37,68,0.12);
+    --shadow: 0 20px 50px -20px rgba(24,37,68,0.35);
+  }.peluditos-volunteer *{box-sizing:border-box; margin:0; padding:0;}.peluditos-volunteer{
+    font-family:'Montserrat', sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    font-size:18px;
+    line-height:1.4;
+    -webkit-font-smoothing:antialiased;
+  }.peluditos-volunteer h1, .peluditos-volunteer h2, .peluditos-volunteer h3, .peluditos-volunteer h4{
+    font-family:'Montserrat', sans-serif;
+    line-height:1.4;
+    font-weight:900;
+  }.peluditos-volunteer a{text-decoration:none; color:inherit;}.peluditos-volunteer img, .peluditos-volunteer svg{display:block; max-width:100%;}.peluditos-volunteer .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}.peluditos-volunteer .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:.14em;
+    text-transform:uppercase; font-size:12.5px; color:var(--orange-2);
+    margin-bottom:14px;
+  }.peluditos-volunteer .eyebrow::before{
+    content:""; width:22px; height:2px; background:var(--orange); display:inline-block;
+  }.peluditos-volunteer .btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:15px 28px; border-radius:8px; font-weight:700; font-size:14.5px;
+    letter-spacing:.03em; cursor:pointer; border:2px solid transparent;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    font-family:'Montserrat',sans-serif;
+  }.peluditos-volunteer .btn:hover{transform:translateY(-2px);}.peluditos-volunteer .btn-cream{background:var(--cream); color:var(--navy); border-color:var(--cream);}.peluditos-volunteer .btn-cream:hover{background:var(--cream-2); box-shadow:var(--shadow);}.peluditos-volunteer .btn-orange{background:var(--orange); color:#fff; border-color:var(--orange);}.peluditos-volunteer .btn-orange:hover{background:var(--orange-2); box-shadow:0 20px 40px -18px rgba(232,130,47,0.6);}.peluditos-volunteer .btn-outline{background:transparent; color:var(--cream); border-color:rgba(240,236,211,0.4);}.peluditos-volunteer .btn-outline:hover{border-color:var(--cream); background:rgba(240,236,211,0.08);}.peluditos-volunteer /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--navy); border-bottom:1px solid rgba(255,255,255,0.08);
+  }.peluditos-volunteer .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 32px; max-width:1180px; margin:0 auto;
+  }.peluditos-volunteer .logo{display:flex; align-items:center; gap:8px; font-family:'Montserrat'; font-weight:800; color:var(--orange); font-size:20px;}.peluditos-volunteer .logo span{color:var(--cream);}.peluditos-volunteer .nav-links{display:flex; gap:30px; list-style:none;}.peluditos-volunteer .nav-links a{
+    color:var(--cream); font-size:14.5px; font-weight:600; opacity:.85;
+    transition:opacity .15s ease;
+  }.peluditos-volunteer .nav-links a:hover{opacity:1; color:var(--orange);}.peluditos-volunteer .nav-links a.active{color:var(--orange); opacity:1;}.peluditos-volunteer .nav-toggle{display:none; background:none; border:none; color:var(--cream); font-size:26px; cursor:pointer;}.peluditos-volunteer /* ---------- HERO ---------- */
+  .hero{
+    background:var(--navy);
+    position:relative;
+    overflow:hidden;
+    padding:64px 0 0;
+  }.peluditos-volunteer .hero .wrap{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center;
+    padding-bottom:70px;
+  }.peluditos-volunteer .hero-copy .eyebrow{color:var(--orange);}.peluditos-volunteer .hero h1{
+    font-size:clamp(38px,5vw,58px); color:var(--cream);
+  }.peluditos-volunteer .hero h1 em{font-style:normal; color:var(--orange);}.peluditos-volunteer .hero p{color:rgba(240,236,211,0.75); font-size:17px; margin:22px 0 30px; max-width:480px;}.peluditos-volunteer .hero-actions{display:flex; gap:16px; flex-wrap:wrap;}.peluditos-volunteer .hero-art{position:relative; height:420px;}.peluditos-volunteer .hero-art svg{position:absolute; inset:0; width:100%; height:100%;}.peluditos-volunteer /* contour divider */
+  .contour{
+    width:100%; height:70px; display:block;
+    margin-top:-1px;
+  }.peluditos-volunteer /* ---------- EXPERIENCE ---------- */
+  .experience{background:var(--cream); padding:90px 0;}.peluditos-volunteer .experience .grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;
+  }.peluditos-volunteer .experience h2{font-size:clamp(28px,3.4vw,38px); margin-bottom:20px;}.peluditos-volunteer .experience p{color:rgba(24,37,68,0.8); margin-bottom:16px; font-size:18px;}.peluditos-volunteer .experience p strong{color:var(--navy);}.peluditos-volunteer .experience-art{
+    background:linear-gradient(160deg,#2c4270,var(--navy));
+    border-radius:18px; height:380px; position:relative; overflow:hidden;
+    box-shadow:var(--shadow);
+  }.peluditos-volunteer .experience-art img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}.peluditos-volunteer /* ---------- OFFER ---------- */
+  .offer{background:var(--cream-2); padding:90px 0;}.peluditos-volunteer .offer-head{max-width:640px; margin-bottom:50px;}.peluditos-volunteer .offer-head h2{font-size:clamp(28px,3.4vw,38px);}.peluditos-volunteer .offer-head p{color:rgba(24,37,68,0.7); margin-top:14px; font-size:18px;}.peluditos-volunteer .hours-badge{
+    display:inline-flex; align-items:baseline; gap:8px; background:var(--navy);
+    color:var(--cream); padding:10px 20px; border-radius:100px; margin-bottom:26px;
+    font-weight:700; font-size:14px;
+  }.peluditos-volunteer .hours-badge b{font-family:'Montserrat'; font-size:20px; color:var(--orange);}.peluditos-volunteer .cards4{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}.peluditos-volunteer .role-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:14px;
+    padding:30px 24px; transition:transform .2s ease, box-shadow .2s ease;
+  }.peluditos-volunteer .role-card:hover{transform:translateY(-6px); box-shadow:var(--shadow);}.peluditos-volunteer .role-card .icon{
+    width:46px; height:46px; border-radius:10px; background:rgba(232,130,47,0.12);
+    display:flex; align-items:center; justify-content:center; margin-bottom:18px;
+  }.peluditos-volunteer .role-card .icon svg{width:24px; height:24px;}.peluditos-volunteer .role-card h3{font-size:17px; margin-bottom:8px;}.peluditos-volunteer .role-card p{font-size:14.5px; color:rgba(24,37,68,0.68);}.peluditos-volunteer /* ---------- GET (navy) ---------- */
+  .get{background:var(--navy); color:var(--cream); padding:90px 0;}.peluditos-volunteer .get .offer-head p{color:rgba(240,236,211,0.72);}.peluditos-volunteer .get .eyebrow{color:var(--orange);}.peluditos-volunteer .get h2{color:var(--cream);}.peluditos-volunteer .get-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(255,255,255,0.08); border-radius:16px; overflow:hidden; margin-top:10px;}.peluditos-volunteer .get-item{background:var(--navy-2); padding:28px 22px;}.peluditos-volunteer .get-item .icon{width:38px; height:38px; margin-bottom:14px;}.peluditos-volunteer .get-item .icon svg{width:100%; height:100%;}.peluditos-volunteer .get-item h4{font-size:15px; margin-bottom:6px; color:var(--cream);}.peluditos-volunteer .get-item p{font-size:13.5px; color:rgba(240,236,211,0.65);}.peluditos-volunteer .get-note{
+    margin-top:26px; display:flex; align-items:center; gap:10px;
+    color:rgba(240,236,211,0.75); font-size:14.5px;
+  }.peluditos-volunteer /* ---------- NOT INCLUDED ---------- */
+  .not-included{background:var(--cream); padding:34px 0;}.peluditos-volunteer .not-included .wrap{
+    display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:24px 32px;
+  }.peluditos-volunteer .not-included .label{font-weight:700; font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:var(--navy); opacity:.7; white-space:nowrap;}.peluditos-volunteer .chip{
+    background:transparent; border:1.5px dashed rgba(24,37,68,0.35); border-radius:100px;
+    padding:6px 16px; font-size:13.5px; color:rgba(24,37,68,0.7); font-weight:600;
+  }.peluditos-volunteer /* ---------- PROGRAM DETAILS ---------- */
+  .program{background:var(--cream-2); padding:100px 0; position:relative;}.peluditos-volunteer .program .grid{display:grid; grid-template-columns:1.3fr 0.9fr; gap:60px;}.peluditos-volunteer .program h2{font-size:clamp(28px,3.4vw,36px); margin-bottom:20px;}.peluditos-volunteer .program p{color:rgba(24,37,68,0.78); margin-bottom:16px; font-size:18px;}.peluditos-volunteer .commit-box{
+    background:var(--navy); color:var(--cream); border-radius:18px; padding:36px 32px;
+    align-self:start; position:relative; box-shadow:var(--shadow);
+  }.peluditos-volunteer .commit-box .tag{
+    display:inline-block; background:var(--orange); color:#fff; font-size:12px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase; padding:5px 12px; border-radius:100px; margin-bottom:16px;
+  }.peluditos-volunteer .commit-box h3{font-size:22px; margin-bottom:10px; color:var(--cream);}.peluditos-volunteer .commit-box p{color:rgba(240,236,211,0.75); font-size:14.5px; margin-bottom:0;}.peluditos-volunteer .commit-box .big{font-family:'Montserrat'; font-size:40px; color:var(--orange); font-weight:800; margin:14px 0 4px;}.peluditos-volunteer /* ---------- DAY TIMELINE (navy, .peluditos-volunteer elevation line) ---------- */
+  .day{background:var(--navy); padding:100px 0 60px; color:var(--cream); position:relative;}.peluditos-volunteer .day-head{max-width:600px; margin-bottom:20px;}.peluditos-volunteer .day .eyebrow{color:var(--orange);}.peluditos-volunteer .day h2{color:var(--cream); font-size:clamp(28px,3.4vw,38px);}.peluditos-volunteer .day p.lead{color:rgba(240,236,211,0.72); margin-top:14px; font-size:18px;}.peluditos-volunteer .timeline-wrap{margin-top:60px; position:relative;}.peluditos-volunteer .timeline-svg{width:100%; height:260px;}.peluditos-volunteer .timeline-labels{
+    display:grid; grid-template-columns:repeat(6,1fr); gap:10px; margin-top:14px;
+  }.peluditos-volunteer .tl-item{text-align:left;}.peluditos-volunteer .tl-time{font-family:'Montserrat'; font-weight:700; color:var(--orange); font-size:14px; margin-bottom:4px;}.peluditos-volunteer .tl-desc{font-size:13px; color:rgba(240,236,211,0.68); line-height:1.4;}.peluditos-volunteer .day-footnote{
+    margin-top:36px; font-size:14px; color:rgba(240,236,211,0.6); border-left:3px solid var(--orange);
+    padding-left:16px; max-width:600px;
+  }.peluditos-volunteer /* ---------- SEEKING ---------- */
+  .seeking{background:var(--orange); padding:56px 0;}.peluditos-volunteer .seeking .wrap{display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;}.peluditos-volunteer .seeking h3{color:#fff; font-size:24px; max-width:540px;}.peluditos-volunteer .seeking p{color:rgba(255,255,255,0.85); margin-top:8px; font-size:15px; max-width:520px;}.peluditos-volunteer .seeking-list{list-style:none; margin-top:14px; max-width:520px;}.peluditos-volunteer .seeking-list li{
+    color:rgba(255,255,255,0.9); font-size:15px; padding-left:24px; position:relative; margin-bottom:8px;
+  }.peluditos-volunteer .seeking-list li::before{
+    content:"→"; position:absolute; left:0; top:0; color:var(--navy); font-weight:700;
+  }.peluditos-volunteer .seeking .btn{background:var(--navy); color:var(--cream); border-color:var(--navy);}.peluditos-volunteer .seeking .btn:hover{background:var(--navy-3);}.peluditos-volunteer /* ---------- HOUSE RULE ---------- */
+  .rule{background:var(--cream); padding:26px 0;}.peluditos-volunteer .rule .wrap{
+    display:flex; align-items:center; gap:14px; font-size:14px; color:rgba(24,37,68,0.75);
+    border-radius:10px;
+  }.peluditos-volunteer .rule svg{flex-shrink:0; width:20px; height:20px; color:var(--orange-2);}.peluditos-volunteer /* ---------- CLOSING CTA ---------- */
+  .closing{background:var(--paper); padding:110px 0; text-align:center;}.peluditos-volunteer .closing h2{font-size:clamp(30px,4vw,44px); max-width:680px; margin:0 auto 18px;}.peluditos-volunteer .closing p{color:rgba(24,37,68,0.7); max-width:520px; margin:0 auto 34px; font-size:16.5px;}.peluditos-volunteer .closing-actions{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}.peluditos-volunteer .closing .btn-cream{background:var(--navy); color:var(--cream); border-color:var(--navy);}.peluditos-volunteer .closing .btn-cream:hover{background:var(--navy-3);}.peluditos-volunteer footer{background:var(--navy-3); padding:36px 0; text-align:center;}.peluditos-volunteer footer p{color:rgba(240,236,211,0.5); font-size:13px;}.peluditos-volunteer /* ---------- APPLY FORM ---------- */
+  .apply-form{
+    max-width:820px; margin:50px auto 0; text-align:left;
+  }.peluditos-volunteer .form-row{display:grid; grid-template-columns:1fr 1fr; gap:18px;}.peluditos-volunteer .field{margin-bottom:18px;}.peluditos-volunteer .field input[type="text"], .peluditos-volunteer .field input[type="email"], .peluditos-volunteer .field input[type="tel"], .peluditos-volunteer .field select, .peluditos-volunteer .field textarea{
+    width:100%; padding:16px 18px; border-radius:10px; border:1.5px solid var(--line);
+    background:var(--cream-2); font-family:'Montserrat',sans-serif; font-size:15px; color:var(--ink);
+    transition:border-color .15s ease, background .15s ease;
+  }.peluditos-volunteer .field select{
+    appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23182544' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 18px center;
+    cursor:pointer;
+  }.peluditos-volunteer .field textarea{resize:vertical; min-height:150px; font-family:'Montserrat',sans-serif;}.peluditos-volunteer .field input::placeholder, .peluditos-volunteer .field textarea::placeholder{color:rgba(24,37,68,0.45);}.peluditos-volunteer .field input:focus, .peluditos-volunteer .field select:focus, .peluditos-volunteer .field textarea:focus{
+    outline:none; border-color:var(--orange); background:var(--paper);
+  }.peluditos-volunteer .checkline{
+    display:flex; align-items:flex-start; gap:12px; margin-bottom:16px; font-size:14px;
+    color:rgba(24,37,68,0.75); line-height:1.5;
+  }.peluditos-volunteer .checkline input[type="checkbox"]{
+    width:19px; height:19px; margin-top:2px; flex-shrink:0; accent-color:var(--orange); cursor:pointer;
+  }.peluditos-volunteer .checkline a{color:var(--orange-2); font-weight:600; text-decoration:underline;}.peluditos-volunteer .checkline strong{color:var(--navy);}.peluditos-volunteer .required-note{font-size:12px; color:rgba(24,37,68,0.5); margin:-6px 0 22px;}.peluditos-volunteer .apply-form .btn-orange{width:100%; padding:17px; font-size:15px; margin-top:6px;}@media (max-width:640px){.peluditos-volunteer .form-row{grid-template-columns:1fr;}}@media (max-width:920px){.peluditos-volunteer .hero .wrap{grid-template-columns:1fr; padding-bottom:40px;}.peluditos-volunteer .hero-art{height:280px; order:-1;}.peluditos-volunteer .experience .grid{grid-template-columns:1fr;}.peluditos-volunteer .experience-art{height:260px;}.peluditos-volunteer .cards4{grid-template-columns:1fr 1fr;}.peluditos-volunteer .get-grid{grid-template-columns:1fr 1fr;}.peluditos-volunteer .program .grid{grid-template-columns:1fr;}.peluditos-volunteer .timeline-labels{grid-template-columns:repeat(3,1fr);}.peluditos-volunteer .nav-links{display:none;}.peluditos-volunteer .nav-toggle{display:block;}}@media (max-width:600px){.peluditos-volunteer .cards4{grid-template-columns:1fr;}.peluditos-volunteer .get-grid{grid-template-columns:1fr;}.peluditos-volunteer .timeline-labels{grid-template-columns:repeat(2,1fr);}.peluditos-volunteer .not-included .wrap{flex-direction:column; align-items:flex-start;}.peluditos-volunteer .seeking .wrap{flex-direction:column; align-items:flex-start;}}@media (prefers-reduced-motion: reduce){.peluditos-volunteer html{scroll-behavior:auto;}.peluditos-volunteer .btn, .peluditos-volunteer .role-card{transition:none;}}.peluditos-volunteer .form-success{
+    background:#e8f5e9; color:#1b5e20; border:1.5px solid #a5d6a7; border-radius:10px;
+    padding:16px 18px; margin-bottom:20px; font-size:14.5px; font-weight:600;
+  }
+</style>
+
+<div class="peluditos-volunteer" style="visibility:hidden;">
+<!-- EXPERIENCE -->
+<section class="experience">
+  <div class="wrap">
+    <div class="grid">
+      <div class="experience-art">
+        {%- comment -%}
+          Toma "the-experience.jpg" de tu biblioteca de archivos de Shopify
+          (Admin de Shopify -> Contenido -> Archivos). Sube tu foto ahí
+          con exactamente este nombre de archivo, o edita el nombre abajo
+          para que coincida con el que le pusiste al subirla.
+        {%- endcomment -%}
+        <img src="{{ 'the-experience.jpg' | file_img_url: '900x' }}"
+             alt="Voluntarios cuidando animales rescatados en la Fundación Peluditos SD"
+             loading="lazy">
+      </div>
+      <div>
+        <div class="eyebrow">{{ 'experience.eyebrow' | t }}</div>
+        <h2>Un santuario escondido en las montañas</h2>
+        <p>Nuestra fundación sin ánimo de lucro cuida perros, gatos y caballos rescatados, restaurando su salud para que puedan ser adoptados por personas que los amarán. Los alimentamos con <strong>comida natural y casera</strong> y esterilizamos a cada animal que pasa por nuestras puertas.</p>
+        <p>Nuestro pequeño equipo recibe con gusto a voluntarios que quieren ayudar y aprender. Trabajar con nosotros significa compartir tus días con animales que devuelven amor — y siempre te daremos una cálida bienvenida a nuestro santuario. :)</p>
+        <p>El santuario en sí es un paraíso: escondido en lo profundo de las montañas, rodeado de quebradas, paisajes hermosos y una tranquilidad que no encontrarás en ningún otro lugar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU OFFER -->
+<section class="offer">
+  <div class="wrap">
+    <div class="offer-head">
+      <div class="eyebrow">Lo que tú ofreces</div>
+      <div class="hours-badge"><b>35</b> horas de ayuda por semana</div>
+      <h2>En qué colaboran los voluntarios</h2>
+      <p>Tu tiempo se distribuye en algunas tareas esenciales que mantienen el santuario — y a los animales en él — funcionando bien.</p>
+    </div>
+    <div class="cards4">
+      <div class="role-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#E8822F" stroke-width="2" stroke-linecap="round"><path d="M3 7h18M6 7v13a1 1 0 001 1h10a1 1 0 001-1V7M9 7V4h6v3"/></svg></div>
+        <h3>Limpieza</h3>
+        <p>Ayuda a mantener la cocina, las habitaciones, los baños y las áreas comunes limpias y acogedoras para todos.</p>
+      </div>
+      <div class="role-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#E8822F" stroke-width="2" stroke-linecap="round"><path d="M4 21V9a8 8 0 0116 0v12M4 14h16"/></svg></div>
+        <h3>Ayudante de cocina</h3>
+        <p>Ayuda a preparar, terminar y servir las comidas caseras — tanto para el equipo como para los animales.</p>
+      </div>
+      <div class="role-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#E8822F" stroke-width="2" stroke-linecap="round"><path d="M12 20s-7-4.35-7-10a4 4 0 018-1 4 4 0 018 1c0 5.65-7 10-7 10z"/></svg></div>
+        <h3>Cuidado animal</h3>
+        <p>Ayuda a cuidar de los perros, gatos y caballos — alimentándolos, atendiéndolos y simplemente pasando tiempo con ellos.</p>
+      </div>
+      <div class="role-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#E8822F" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <h3>Trabajo social</h3>
+        <p>Ayuda con labor voluntaria en proyectos y comunidades locales más allá de las puertas del santuario.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="get">
+  <div class="wrap">
+    <div class="offer-head">
+      <div class="eyebrow">Lo que tú recibes</div>
+      <h2>Lo que cubrimos durante tu estadía</h2>
+      <p>Nos aseguramos de que tengas alojamiento, comida y cuidado.</p>
+    </div>
+    <div class="get-grid">
+      <div class="get-item">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#E8822F" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <h4>1 día libre / semana</h4>
+        <p>Un día completo para descansar, explorar o simplemente no hacer nada.</p>
+      </div>
+      <div class="get-item">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#E8822F" stroke-width="2" stroke-linecap="round"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg></div>
+        <h4>Habitación privada o compartida</h4>
+        <p>Alojamiento cómodo en el lugar durante toda tu estadía.</p>
+      </div>
+      <div class="get-item">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#E8822F" stroke-width="2" stroke-linecap="round"><path d="M4 21V9a8 8 0 0116 0v12M4 14h16"/></svg></div>
+        <h4>Comida gratuita, todos los días</h4>
+        <p>Las comidas se proveen diariamente durante toda tu estadía.</p>
+      </div>
+      <div class="get-item">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#E8822F" stroke-width="2" stroke-linecap="round"><path d="M4 4h16v16H4zM8 4v16M16 4v16"/></svg></div>
+        <h4>Lavandería gratuita</h4>
+        <p>Uso de nuestra lavandería cuando la necesites.</p>
+      </div>
+      <div class="get-item">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#E8822F" stroke-width="2" stroke-linecap="round"><path d="M12 3v2M12 19v2M4 12H2M22 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6"/><circle cx="12" cy="12" r="4"/></svg></div>
+        <h4>Cocina equipada</h4>
+        <p>Uso libre de la cocina — prepara tu propia comida cuando quieras.</p>
+      </div>
+      <div class="get-item">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#E8822F" stroke-width="2" stroke-linecap="round"><path d="M12 15a4 4 0 004-4V6a4 4 0 00-8 0v5a4 4 0 004 4zM19 11a7 7 0 01-14 0M12 19v3"/></svg></div>
+        <h4>Certificado</h4>
+        <p>Un certificado de finalización una vez termine tu experiencia con nosotros.</p>
+      </div>
+      <div class="get-item">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#E8822F" stroke-width="2" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114 0M8.5 16a6 6 0 017 0M2 8.82a16 16 0 0120 0M12 20h.01"/></svg></div>
+        <h4>Internet de alta velocidad</h4>
+        <p>Wifi rápido si necesitas mantenerte conectado o trabajar remotamente.</p>
+      </div>
+      <div class="get-item">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#E8822F" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="8" r="3"/><path d="M2 20c0-3 3-5 7-5s7 2 7 5M14 15c3.5.3 6 2.2 6 5"/></svg></div>
+        <h4>Solos, parejas y acompañantes</h4>
+        <p>Recibimos con gusto a voluntarios solos, parejas y acompañantes de voluntariado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOT INCLUDED -->
+<section class="not-included">
+  <div class="wrap">
+    <span class="label">No incluido</span>
+    <span class="chip">Vuelos</span>
+    <span class="chip">Seguro de viaje</span>
+    <span class="chip">Transporte interno</span>
+    <span class="chip">Visa</span>
+  </div>
+</section>
+
+<!-- PROGRAM DETAILS -->
+<section class="program">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <div class="eyebrow">Detalles del programa</div>
+        <h2>Lo que estamos construyendo aquí</h2>
+        <p>Somos una fundación sin ánimo de lucro dedicada al cuidado y protección de los muchos perros y gatos que llegan aquí víctimas del descuido, el maltrato y el abandono.</p>
+        <p>Cuando recibimos a un animal no deseado en nuestras puertas, nuestro objetivo es simple: restaurar su salud — mental y física — para que puedan ser adoptados por personas capaces de darles el amor y la atención que merecen.</p>
+        <p>Para cuidar bien a nuestros peludos amigos, nos aseguramos de que cada animal esté medicado, alimentado con una dieta balanceada de comida natural casera preparada por nuestro propio equipo, y esterilizado — porque sabemos cuánto protege la esterilización el bienestar de esta generación y las que vienen.</p>
+        <p>Somos un equipo pequeño, y cada uno de nosotros ama profundamente a los animales, con gusto compartimos lo que sabemos con cualquiera que esté interesado. :)</p>
+      </div>
+      <div class="commit-box">
+        <span class="tag">Por favor lee antes de postularte</span>
+        <h3>Buscamos voluntarios a largo plazo</h3>
+        <div class="big">8 semanas</div>
+        <p>es nuestra estadía mínima — por ahora no podemos aceptar voluntarios de corto plazo. Nos encantaría que consideres comprometerte por 6 meses o más. Por favor postúlate solo si puedes comprometerte al menos con el mínimo de 8 semanas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY IN THE LIFE / TIMELINE -->
+<section class="day">
+  <div class="wrap">
+    <div class="day-head">
+      <div class="eyebrow">Actividades y turno</div>
+      <h2>Un día en el santuario</h2>
+      <p class="lead">El ritmo del día sigue a los animales — ocupado en los horarios de alimentación, tranquilo entre medio, con espacio para respirar después de las 5pm.</p>
+    </div>
+
+    <div class="timeline-wrap">
+      <svg class="timeline-svg" viewBox="0 0 1160 260" preserveAspectRatio="none">
+        <!-- elevation-style line: activity intensity across the day -->
+        <path d="M0 60 L 180 60 L 210 190 L 340 190 L 380 70 L 620 70 L 660 190 L 800 190 L 840 70 L 1000 70 L 1040 200 L 1160 200"
+              fill="none" stroke="#E8822F" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="0.9"/>
+        <path d="M0 60 L 180 60 L 210 190 L 340 190 L 380 70 L 620 70 L 660 190 L 800 190 L 840 70 L 1000 70 L 1040 200 L 1160 200 L1160 260 L0 260 Z"
+              fill="#E8822F" opacity="0.06"/>
+        <circle cx="90" cy="60" r="5" fill="#E8822F"/>
+        <circle cx="275" cy="190" r="5" fill="#F0ECD3"/>
+        <circle cx="500" cy="70" r="5" fill="#E8822F"/>
+        <circle cx="730" cy="190" r="5" fill="#F0ECD3"/>
+        <circle cx="920" cy="70" r="5" fill="#E8822F"/>
+        <circle cx="1100" cy="200" r="5" fill="#F0ECD3"/>
+      </svg>
+      <div class="timeline-labels">
+        <div class="tl-item">
+          <div class="tl-time">07:00 – 08:30</div>
+          <div class="tl-desc">Alimentar animales + limpiar áreas comunes</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">08:30 – 09:00</div>
+          <div class="tl-desc">Desayuno</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">09:00 – 12:00</div>
+          <div class="tl-desc">Tareas de enfermería (tratamiento de heridas, etc.) + limpieza de dormitorios de gatos y perros</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">12:00 – 13:00</div>
+          <div class="tl-desc">Almuerzo</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">16:00 – 17:00</div>
+          <div class="tl-desc">Alimentar animales</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">Después de las 17:00</div>
+          <div class="tl-desc">Tiempo libre</div>
+        </div>
+      </div>
+    </div>
+    <p class="day-footnote">Con tantos animales, siempre puede pasar algo inesperado — a veces también se necesita trabajar después de las 5pm. La flexibilidad es parte de la vida aquí.</p>
+  </div>
+</section>
+
+<!-- CURRENTLY SEEKING -->
+<section class="seeking">
+  <div class="wrap">
+    <div>
+      <h3>En este momento buscamos especialmente auxiliares veterinarios o adiestradores caninos.</h3>
+      <p>Si esa es tu experiencia, nos encantaría saber de ti — pero también estamos buscando algunas otras habilidades:</p>
+      <ul class="seeking-list">
+        <li>Personas con experiencia en jardinería y cultivo de huertas.</li>
+        <li>Alguien que gestione nuestras redes sociales (hacer publicaciones o historias).</li>
+      </ul>
+    </div>
+    <a href="#apply" class="btn">Quiero ser voluntario</a>
+  </div>
+</section>
+
+<!-- HOUSE RULE -->
+<section class="rule">
+  <div class="wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+    <span>Está estrictamente prohibido el consumo de drogas en la propiedad.</span>
+  </div>
+</section>
+
+<!-- CLOSING CTA + APPLY FORM -->
+<section class="closing" id="apply">
+  <div class="wrap">
+    <h2>¿Listo para pasar tus días con los peluditos?</h2>
+    <p>Llena el formulario a continuación y nuestro equipo te contactará con todo lo que necesitas saber para postularte — incluyendo los siguientes pasos para la estadía mínima de 8 semanas.</p>
+
+    {% form 'contact', id: 'volunteer-apply-form', class: 'apply-form' %}
+      {% if form.posted_successfully? %}
+        <div class="form-success">¡Gracias! Hemos recibido tu solicitud. Nos pondremos en contacto pronto.</div>
+      {% endif %}
+      <div class="form-row">
+        <div class="field">
+          <input type="text" name="contact[First Name]" placeholder="Nombre*" required>
+        </div>
+        <div class="field">
+          <input type="text" name="contact[Last Name]" placeholder="Apellido*" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <input type="email" name="contact[email]" placeholder="Correo electrónico*" required>
+      </div>
+
+      <div class="field">
+        <input type="tel" name="contact[phone]" placeholder="Teléfono / WhatsApp">
+      </div>
+
+      <div class="field">
+        <select name="contact[Country of Residence]" required>
+          <option value="" selected disabled>País de residencia*</option>
+          <option>Colombia</option>
+          <option>Estados Unidos</option>
+          <option>Canada</option>
+          <option>Reino Unido</option>
+          <option>Alemania</option>
+          <option>Australia</option>
+          <option>Otro</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <select name="contact[How did you hear about us]">
+          <option value="" selected disabled>¿Cómo te enteraste de nosotros?</option>
+          <option>Instagram / Facebook</option>
+          <option>Búsqueda en Google</option>
+          <option>Amigo o familiar</option>
+          <option>Sitio web de voluntariado</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <textarea name="contact[body]" placeholder="Preguntas / Comentarios"></textarea>
+      </div>
+
+      <label class="checkline">
+        <input type="checkbox" required>
+        <span>Al marcar esta casilla, acepto recibir mensajes informativos de la Fundación Peluditos SD por correo electrónico. También confirmo que he leído y acepto la <a href="#">Política de Privacidad</a> y los <a href="#">Términos y Condiciones</a>.</span>
+      </label>
+
+      <label class="checkline">
+        <input type="checkbox">
+        <span>Doy mi consentimiento para recibir mensajes vía SMS / WhatsApp sobre mi solicitud. Entiendo que puedo cancelar en cualquier momento respondiendo STOP. (opcional)</span>
+      </label>
+
+      <label class="checkline">
+        <input type="checkbox">
+        <span><strong>Recibir novedades:</strong> al marcar esta casilla, acepto recibir el boletín mensual y actualizaciones ocasionales. Puedo cancelar la suscripción en cualquier momento. (opcional)</span>
+      </label>
+
+      <p class="required-note">* Obligatorio</p>
+
+      <button type="submit" class="btn btn-orange">Enviar solicitud</button>
+    {% endform %}
+  </div>
+</section>
+
+
+</div>
+<script>
+  (function(){
+    var el = document.querySelector('.peluditos-volunteer');
+    if (!el) return;
+    function fullBleed(){
+      // Reset first so we measure the element's true, un-shifted offset
+      el.style.marginLeft = '0px';
+      el.style.marginRight = '0px';
+      el.style.width = '';
+      var rect = el.getBoundingClientRect();
+      el.style.width = Math.ceil(window.innerWidth) + 'px';
+      el.style.marginLeft = (-rect.left) + 'px';
+      el.style.marginRight = 'auto';
+      el.style.visibility = 'visible';
+    }
+    fullBleed();
+    window.addEventListener('resize', fullBleed);
+    // Re-run once more after fonts/images settle, in case the initial
+    // measurement happened before the theme's own layout finished.
+    window.addEventListener('load', fullBleed);
+    // Safety net: if anything above throws, never leave the section hidden.
+    setTimeout(function(){ el.style.visibility = 'visible'; }, 1500);
+  })();
+</script>
