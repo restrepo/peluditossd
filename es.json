@@ -873,7 +873,6 @@
       "commit_number": "8 semanas"
     },
     "experience": {
-      "p1": "Nuestra fundación sin ánimo de lucro cuida perros, gatos y caballos rescatados, restaurando su salud para que puedan ser adoptados por personas que los amarán. Los alimentamos con <strong>comida natural y casera</strong> y esterilizamos a cada animal que pasa por nuestras puertas.",
       "p2": "Nuestro pequeño equipo recibe con gusto a voluntarios que quieren ayudar y aprender. Trabajar con nosotros significa compartir tus días con animales que devuelven amor — y siempre te daremos una cálida bienvenida a nuestro santuario. :)",
       "p3": "El santuario en sí es un paraíso: escondido en lo profundo de las montañas, rodeado de quebradas, paisajes hermosos y una tranquilidad que no encontrarás en ningún otro lugar.",
       "image_alt": "Voluntarios cuidando animales rescatados en la Fundación Peluditos SD",
@@ -882,11 +881,10 @@
       "file_comment_3": "con exactamente este nombre de archivo, o edita el nombre abajo",
       "file_comment_4": "para que coincida con el que le pusiste al subirla.",
       "heading": "Un santuario escondido en las montañas",
-      "eyebrow": "La Experiencia"
+      "eyebrow": "La Experiencia",
+      "p1_html": "Nuestra fundación sin ánimo de lucro cuida perros, gatos y caballos rescatados, restaurando su salud para que puedan ser adoptados por personas que los amarán. Los alimentamos con <strong>comida natural y casera</strong> y esterilizamos a cada animal que pasa por nuestras puertas."
     },
     "form": {
-      "consent_required": "Al marcar esta casilla, acepto recibir mensajes informativos de la Fundación Peluditos SD por correo electrónico. También confirmo que he leído y acepto la <a href=\"#\">Política de Privacidad</a> y los <a href=\"#\">Términos y Condiciones</a>.",
-      "consent_updates": "<strong>Recibir novedades:</strong> al marcar esta casilla, acepto recibir el boletín mensual y actualizaciones ocasionales. Puedo cancelar la suscripción en cualquier momento. (opcional)",
       "consent_sms": "Doy mi consentimiento para recibir mensajes vía SMS / WhatsApp sobre mi solicitud. Entiendo que puedo cancelar en cualquier momento respondiendo STOP. (opcional)",
       "referral_placeholder": "¿Cómo te enteraste de nosotros?",
       "country_placeholder": "País de residencia*",
@@ -903,7 +901,9 @@
       "required_note": "* Obligatorio",
       "country_de": "Alemania",
       "email": "Correo electrónico*",
-      "option_other": "Otro"
+      "option_other": "Otro",
+      "consent_required_html": "Al marcar esta casilla, acepto recibir mensajes informativos de la Fundación Peluditos SD por correo electrónico. También confirmo que he leído y acepto la <a href=\"#\">Política de Privacidad</a> y los <a href=\"#\">Términos y Condiciones</a>.",
+      "consent_updates_html": "<strong>Recibir novedades:</strong> al marcar esta casilla, acepto recibir el boletín mensual y actualizaciones ocasionales. Puedo cancelar la suscripción en cualquier momento. (opcional)"
     },
     "closing": {
       "subtext": "Llena el formulario a continuación y nuestro equipo te contactará con todo lo que necesitas saber para postularte — incluyendo los siguientes pasos para la estadía mínima de 8 semanas.",
@@ -1131,11 +1131,11 @@
       "referral_friend": "Amigo o familiar",
       "referral_site": "Sitio web",
       "referral_other": "Otro",
-      "consent_required": "Al marcar esta casilla, acepto recibir mensajes informativos de Fundación Peluditos SD por correo electrónico. También confirmo que he leído y acepto la <a href=\"#\">Política de Privacidad</a> y los <a href=\"#\">Términos y Condiciones</a>.",
       "consent_sms": "Doy mi consentimiento para recibir mensajes vía SMS / WhatsApp sobre mi solicitud. Entiendo que puedo cancelar en cualquier momento respondiendo STOP. (opcional)",
-      "consent_updates": "<strong>Recibir novedades:</strong> al marcar esta casilla, acepto recibir el boletín mensual y actualizaciones ocasionales. Puedo cancelar la suscripción en cualquier momento. (opcional)",
       "required_note": "* Obligatorio",
-      "success_message": "¡Gracias! Hemos recibido tu solicitud. Nuestro equipo te contactará pronto."
+      "success_message": "¡Gracias! Hemos recibido tu solicitud. Nuestro equipo te contactará pronto.",
+      "consent_required_html": "Al marcar esta casilla, acepto recibir mensajes informativos de Fundación Peluditos SD por correo electrónico. También confirmo que he leído y acepto la <a href=\"#\">Política de Privacidad</a> y los <a href=\"#\">Términos y Condiciones</a>.",
+      "consent_updates_html": "<strong>Recibir novedades:</strong> al marcar esta casilla, acepto recibir el boletín mensual y actualizaciones ocasionales. Puedo cancelar la suscripción en cualquier momento. (opcional)"
     }
   }
 }

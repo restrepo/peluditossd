@@ -1472,7 +1472,6 @@
       "commit_number": "8 weeks"
     },
     "experience": {
-      "p1": "Our non-profit cares for rescued dogs, cats and horses — restoring their health so they can be rehomed with people who will love them. We feed <strong>natural, homemade food</strong> and sterilize every animal that comes through our gates.",
       "p2": "Our small team welcomes volunteers who want to help and learn. Working with us means sharing your days with animals who show love in return — and we'll always warmly welcome you into our sanctuary. :)",
       "p3": "The sanctuary itself is a paradise: tucked deep in the mountains, surrounded by streams, beautiful landscapes, and a quiet you won't find anywhere else.",
       "image_alt": "Volunteers caring for rescued animals at Peluditos SD Foundation",
@@ -1481,11 +1480,10 @@
       "file_comment_3": "with exactly this filename, or edit the filename below to",
       "file_comment_4": "match whatever you named it after uploading.",
       "heading": "A sanctuary hidden in the mountains",
-      "eyebrow": "The Experience"
+      "eyebrow": "The Experience",
+      "p1_html": "Our non-profit cares for rescued dogs, cats and horses — restoring their health so they can be rehomed with people who will love them. We feed <strong>natural, homemade food</strong> and sterilize every animal that comes through our gates."
     },
     "form": {
-      "consent_required": "By checking this box, I agree to receive informational messages from Peluditos SD Foundation via email. I also confirm that I have read and agree to the <a href=\"#\">Privacy Policy</a> and <a href=\"#\">Terms &amp; Conditions</a>.",
-      "consent_updates": "<strong>Get updates:</strong> by checking this box, I agree to receive the monthly newsletter and occasional updates. I can unsubscribe at any time. (optional)",
       "consent_sms": "I consent to receive messages via SMS / WhatsApp about my application. I understand I can opt out at any time by replying STOP. (optional)",
       "referral_placeholder": "How did you hear about us?",
       "country_placeholder": "Country of Residence*",
@@ -1502,7 +1500,9 @@
       "required_note": "* Required",
       "country_de": "Germany",
       "email": "Email*",
-      "option_other": "Other"
+      "option_other": "Other",
+      "consent_required_html": "By checking this box, I agree to receive informational messages from Peluditos SD Foundation via email. I also confirm that I have read and agree to the <a href=\"#\">Privacy Policy</a> and <a href=\"#\">Terms &amp; Conditions</a>.",
+      "consent_updates_html": "<strong>Get updates:</strong> by checking this box, I agree to receive the monthly newsletter and occasional updates. I can unsubscribe at any time. (optional)"
     },
     "closing": {
       "subtext": "Fill out the form below and our team will reach out with everything you need to know to apply — including next steps for the 8-week minimum stay.",
@@ -1730,11 +1730,11 @@
       "referral_friend": "Friend or family",
       "referral_site": "Website",
       "referral_other": "Other",
-      "consent_required": "By checking this box, I agree to receive informational messages from Fundación Peluditos SD via email. I also confirm that I have read and agree to the <a href=\"#\">Privacy Policy</a> and <a href=\"#\">Terms &amp; Conditions</a>.",
       "consent_sms": "I consent to receive messages via SMS / WhatsApp about my application. I understand I can opt out at any time by replying STOP. (optional)",
-      "consent_updates": "<strong>Get updates:</strong> by checking this box, I agree to receive the monthly newsletter and occasional updates. I can unsubscribe at any time. (optional)",
       "required_note": "* Required",
-      "success_message": "Thanks! We've received your application. Our team will be in touch soon."
+      "success_message": "Thanks! We've received your application. Our team will be in touch soon.",
+      "consent_required_html": "By checking this box, I agree to receive informational messages from Fundación Peluditos SD via email. I also confirm that I have read and agree to the <a href=\"#\">Privacy Policy</a> and <a href=\"#\">Terms &amp; Conditions</a>.",
+      "consent_updates_html": "<strong>Get updates:</strong> by checking this box, I agree to receive the monthly newsletter and occasional updates. I can unsubscribe at any time. (optional)"
     }
   }
 }
