@@ -1501,7 +1501,7 @@
       "country_de": "Germany",
       "email": "Email*",
       "option_other": "Other",
-      "consent_required_html": "By checking this box, I agree to receive informational messages from Peluditos SD Foundation via email. I also confirm that I have read and agree to the <a href=\"#\">Privacy Policy</a> and <a href=\"#\">Terms &amp; Conditions</a>.",
+      "consent_required_html": "By checking this box, I agree to receive informational messages from Peluditos SD Foundation via email. I also confirm that I have read and agree to the <a href=\"https://1drv.ms/b/c/7443231a1f246157/IQDJngEWStN5Q4bylWRONb_JAa4gfTT6zD9PHEj7zEuAtNg?e=kpb44J\" target=\"_blank\" rel=\"noopener\">Privacy Policy</a> and <a href=\"https://1drv.ms/b/c/7443231a1f246157/IQDEDtGQe9vXRb-gsYYSCc--AWAdcMkMF5gmUFuvSDatdVY?e=k807zJ\" target=\"_blank\" rel=\"noopener\">Terms &amp; Conditions</a>.",
       "consent_updates_html": "<strong>Get updates:</strong> by checking this box, I agree to receive the monthly newsletter and occasional updates. I can unsubscribe at any time. (optional)"
     },
     "closing": {
@@ -1583,11 +1583,11 @@
       "lead": "Your time changes lives. Every hour you give is a second chance for them. You don't need to be an expert, just heart and commitment.",
       "cta_primary": "I want to volunteer",
       "cta_secondary": "See areas",
-      "stat1_value": "+500",
+      "stat1_value": "+50",
       "stat1_label": "ANIMALS HELPED",
       "stat2_value": "3",
       "stat2_label": "AREAS OF ACTION",
-      "stat3_value": "8+",
+      "stat3_value": "2+",
       "stat3_label": "YEARS RESCUING",
       "card_today_title": "Today's activity",
       "card_today_sub": "Parque Laureles · 9am",
@@ -1733,7 +1733,7 @@
       "consent_sms": "I consent to receive messages via SMS / WhatsApp about my application. I understand I can opt out at any time by replying STOP. (optional)",
       "required_note": "* Required",
       "success_message": "Thanks! We've received your application. Our team will be in touch soon.",
-      "consent_required_html": "By checking this box, I agree to receive informational messages from Fundación Peluditos SD via email. I also confirm that I have read and agree to the <a href=\"#\">Privacy Policy</a> and <a href=\"#\">Terms &amp; Conditions</a>.",
+      "consent_required_html": "By checking this box, I agree to receive informational messages from Fundación Peluditos SD via email. I also confirm that I have read and agree to the <a href=\"https://1drv.ms/b/c/7443231a1f246157/IQDJngEWStN5Q4bylWRONb_JAa4gfTT6zD9PHEj7zEuAtNg?e=kpb44J\" target=\"_blank\" rel=\"noopener\">Privacy Policy</a> and <a href=\"https://1drv.ms/b/c/7443231a1f246157/IQDEDtGQe9vXRb-gsYYSCc--AWAdcMkMF5gmUFuvSDatdVY?e=k807zJ\" target=\"_blank\" rel=\"noopener\">Terms &amp; Conditions</a>.",
       "consent_updates_html": "<strong>Get updates:</strong> by checking this box, I agree to receive the monthly newsletter and occasional updates. I can unsubscribe at any time. (optional)"
     }
   }

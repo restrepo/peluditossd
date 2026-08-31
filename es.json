@@ -902,7 +902,7 @@
       "country_de": "Alemania",
       "email": "Correo electrónico*",
       "option_other": "Otro",
-      "consent_required_html": "Al marcar esta casilla, acepto recibir mensajes informativos de la Fundación Peluditos SD por correo electrónico. También confirmo que he leído y acepto la <a href=\"#\">Política de Privacidad</a> y los <a href=\"#\">Términos y Condiciones</a>.",
+      "consent_required_html": "Al marcar esta casilla, acepto recibir mensajes informativos de la Fundación Peluditos SD por correo electrónico. También confirmo que he leído y acepto la <a href=\"https://1drv.ms/b/c/7443231a1f246157/IQD9g0WWcq1xSLNgHmMCRNKaATEbG7awibSrVj_lwOXgXxo?e=b2fUKJ\" target=\"_blank\" rel=\"noopener\">Política de Privacidad</a> y los <a href=\"https://1drv.ms/b/c/7443231a1f246157/IQCjIQT_aQwWSpwm_m3ZdrFUAVrvF5L3RVNl1M4UBKQBPCY?e=wmG2s4\" target=\"_blank\" rel=\"noopener\">Términos y Condiciones</a>.",
       "consent_updates_html": "<strong>Recibir novedades:</strong> al marcar esta casilla, acepto recibir el boletín mensual y actualizaciones ocasionales. Puedo cancelar la suscripción en cualquier momento. (opcional)"
     },
     "closing": {
@@ -984,11 +984,11 @@
       "lead": "Tu tiempo cambia vidas. Cada hora que donas es una segunda oportunidad para ellos. No necesitas ser experto, solo tener corazón y compromiso.",
       "cta_primary": "Quiero ser voluntario",
       "cta_secondary": "Ver áreas",
-      "stat1_value": "+500",
+      "stat1_value": "+50",
       "stat1_label": "ANIMALES AYUDADOS",
       "stat2_value": "3",
       "stat2_label": "ÁREAS DE ACCIÓN",
-      "stat3_value": "8+",
+      "stat3_value": "2+",
       "stat3_label": "AÑOS RESCATANDO",
       "card_today_title": "Jornada hoy",
       "card_today_sub": "Parque Laureles · 9am",
@@ -1134,7 +1134,7 @@
       "consent_sms": "Doy mi consentimiento para recibir mensajes vía SMS / WhatsApp sobre mi solicitud. Entiendo que puedo cancelar en cualquier momento respondiendo STOP. (opcional)",
       "required_note": "* Obligatorio",
       "success_message": "¡Gracias! Hemos recibido tu solicitud. Nuestro equipo te contactará pronto.",
-      "consent_required_html": "Al marcar esta casilla, acepto recibir mensajes informativos de Fundación Peluditos SD por correo electrónico. También confirmo que he leído y acepto la <a href=\"#\">Política de Privacidad</a> y los <a href=\"#\">Términos y Condiciones</a>.",
+      "consent_required_html": "Al marcar esta casilla, acepto recibir mensajes informativos de Fundación Peluditos SD por correo electrónico. También confirmo que he leído y acepto la <a href=\"https://1drv.ms/b/c/7443231a1f246157/IQD9g0WWcq1xSLNgHmMCRNKaATEbG7awibSrVj_lwOXgXxo?e=b2fUKJ\" target=\"_blank\" rel=\"noopener\">Política de Privacidad</a> y los <a href=\"https://1drv.ms/b/c/7443231a1f246157/IQCjIQT_aQwWSpwm_m3ZdrFUAVrvF5L3RVNl1M4UBKQBPCY?e=wmG2s4\" target=\"_blank\" rel=\"noopener\">Términos y Condiciones</a>.",
       "consent_updates_html": "<strong>Recibir novedades:</strong> al marcar esta casilla, acepto recibir el boletín mensual y actualizaciones ocasionales. Puedo cancelar la suscripción en cualquier momento. (opcional)"
     }
   }
